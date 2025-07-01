@@ -48,8 +48,8 @@ protectPage();
 
     // ✅ CAMBIO: Guardar las notas en el campo correspondiente del usuario
     function guardarNotasEnStorage() {
-        userData[index].notes = notas;
         userData = JSON.parse(localStorage.getItem('users'));
+        userData[index].notes = notas;
         localStorage.setItem('users', JSON.stringify(userData));
         
     }
@@ -239,9 +239,7 @@ protectPage();
             });
             
             addLog("Eliminaste una nota", current());
-            const userData = JSON.parse(localStorage.getItem('users'));
-            console.log(userData);
-            
+
             guardarNotasEnStorage();
             renderizarNotas();
             mostrarEstadoVacio();
