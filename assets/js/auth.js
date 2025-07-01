@@ -1,3 +1,5 @@
+
+
 export function getUsers() {
   return JSON.parse(localStorage.getItem("users")) || [];
 }
@@ -49,16 +51,7 @@ export async function login(email, password) {
       return false;
     }
   }
-  
 }
-
-// /**
-//  * Logs out the current user by removing the "loggedIn" item from localStorage.
-//  * This effectively ends the user's session on the client side.
-//  */
-// function logout() {
-//   localStorage.removeItem("loggedIn");
-// }
 
 /**
  * Checks if the user is currently logged in by verifying the presence of the "loggedIn" item in localStorage.

@@ -3,21 +3,18 @@ import { hashPassword, protectPage }  from '../js/auth.js';
 
 protectPage();
 
-// Lista de los usuarios
 let index = localStorage.getItem('index')
 let userData = JSON.parse(localStorage.getItem('users'));
-
-// Obtener formulario
 
 const form = document.getElementById('user-form');
 
 function changePlaceholder() {
-  document.getElementById('firstName').placeholder = userData[index].nombres;
-  document.getElementById('lastName').placeholder = userData[index].apellidos;
+  document.getElementById('firstName').placeholder = userData[index].firstName;
+  document.getElementById('lastName').placeholder = userData[index].lastName;
   document.getElementById('email').placeholder = userData[index].email;
-  document.getElementById('phone').placeholder = userData[index].telefono;
-  document.getElementById('country').placeholder = userData[index].pais;
-  document.getElementById('city').placeholder = userData[index].ciudad;
+  document.getElementById('phone').placeholder = userData[index].phone;
+  document.getElementById('country').placeholder = userData[index].country;
+  document.getElementById('city').placeholder = userData[index].city;
 }
 
 changePlaceholder()
@@ -38,7 +35,6 @@ form.addEventListener('submit', async function (e) {
     user[key] = value;
   }
 
-  // Si el usuario ingresó una nueva contraseña, la comparamos
   if (user.password && user.confirmPass) {
     const passHash = await hashPassword(user.password);
     const confirmHash = await hashPassword(user.confirmPass);
@@ -51,7 +47,7 @@ form.addEventListener('submit', async function (e) {
     }
   }
   
-  const fieldsToCompare = ['nombres', 'apellidos', 'email', 'telefono', 'pais', 'ciudad'];
+  const fieldsToCompare = ['firstName', 'lastName', 'email', 'phone', 'country', 'city'];
 
   for (const field of fieldsToCompare) {
     if (user[field] !== userData[index][field]) {

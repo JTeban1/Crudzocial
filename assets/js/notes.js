@@ -1,4 +1,5 @@
 import { protectPage }  from './auth.js';
+import {addLog, current}  from '../js/logic_logs.js';
 
 protectPage();
 
@@ -49,6 +50,7 @@ protectPage();
     function guardarNotasEnStorage() {
         userData[index].notes = notas;
         localStorage.setItem('users', JSON.stringify(userData));
+        
     }
 
     function renderizarNotas() {

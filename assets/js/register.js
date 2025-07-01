@@ -33,7 +33,7 @@ function validatePasswords(form) {
   const confirmPassword = form.confirmPassword.value;
   
   if (password !== confirmPassword) {
-    alert("Passwords do not match.");
+    alert("Las contraseñas no son iguales.");
     return false;
   }
   return true;
@@ -51,12 +51,12 @@ function createUserObject(form) {
   
   return {
     id: nextId,
-    nombres: form.nombres.value,
-    apellidos: form.apellidos.value,
+    firstName: form.firstName.value,
+    lastName: form.lastName.value,
     email: form.email.value,
-    telefono: form.telefono.value,
-    pais: form.pais.value,
-    ciudad: form.ciudad.value,
+    phone: form.phone.value,
+    country: form.country.value,
+    city: form.city.value,
     password: form.password.value,
     logs: [],
     imgs: [],
@@ -74,6 +74,6 @@ function createUserObject(form) {
  */
 async function registerUser(user) {
   await saveUser(user);
-  alert("Registration successful! You can now log in.");
+  alert("Registro realizado correctamente, ¡ya puedes iniciar sesión!");
   window.location.href = "../index.html";
 }
