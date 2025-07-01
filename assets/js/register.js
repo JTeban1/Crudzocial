@@ -1,3 +1,5 @@
+import { getUsers, saveUser }  from '../js/auth.js';
+
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("registerForm").addEventListener("submit", handleRegistration);
 });
@@ -55,7 +57,10 @@ function createUserObject(form) {
     telefono: form.telefono.value,
     pais: form.pais.value,
     ciudad: form.ciudad.value,
-    password: form.password.value
+    password: form.password.value,
+    logs: [],
+    imgs: [],
+    notes: []
   };
 }
 

@@ -1,8 +1,8 @@
-function getUsers() {
+export function getUsers() {
   return JSON.parse(localStorage.getItem("users")) || [];
 }
 
-async function hashPassword(password) {
+export async function hashPassword(password) {
   const encoder = new TextEncoder();
   const data = encoder.encode(password);
   const hashBuffer = await crypto.subtle.digest("SHA-256", data);
@@ -10,7 +10,7 @@ async function hashPassword(password) {
   return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
-async function saveUser(user) {
+export async function saveUser(user) {
   user.password = await hashPassword(user.password);
   const users = getUsers();
   users.push(user);
@@ -26,15 +26,30 @@ async function saveUser(user) {
  * @param {string} password - The user's plain text password.
  * @returns {Promise<number|boolean>} The user's ID if authentication is successful, otherwise false.
  */
-async function login(email, password) {
-  const users = getUsers();
+export async function login(email, password) {
   const hashedPassword = await hashPassword(password);
-  const user = users.find(u => u.email === email && u.password === hashedPassword);
-  if (user) {
-    localStorage.setItem("loggedIn", JSON.stringify(user));
-    return user.id; // Changed from "return true, user.id;" 
+  if (!localStorage.getItem('users')) {
+    
+  }else{
+    let usersList = JSON.parse(localStorage.getItem("users"));
+    console.log(usersList);
+    let flag = false;
+
+    for (let index = 0; index < usersList.length; index++) {
+      if (usersList[index].email === email) {
+        if (usersList[index].password === hashedPassword) {
+            let indicator = index;
+            localStorage.setItem("index", indicator);
+            return true;
+        }
+      }
+    }
+
+    if (flag === false) {
+      return false;
+    }
   }
-  return false;
+  
 }
 
 /**

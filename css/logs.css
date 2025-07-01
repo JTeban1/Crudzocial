@@ -1,0 +1,60 @@
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+.card-custom {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.card-custom h5 {
+    font-size: 1.5rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Estilo de la tabla */
+.table-custom {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 0;
+}
+
+.table-custom thead {
+    background-color: #0072ff;
+    color: white;
+}
+
+.table-custom th, .table-custom td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.table-custom tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.table-custom tbody tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+    transform: scale(1.02);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+/* Estilo del botón */
+.btn-custom {
+    background-color: #0072ff;
+    color: white;
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
+    width: 12em;
+    margin-top: 20px;
+}
+
+.btn-custom:hover {
+    background-color: #005bb5;
+}

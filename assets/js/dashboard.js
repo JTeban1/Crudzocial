@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
+  let userConfirm = localStorage.getItem('loggedIn');
+  console.log(userConfirm);
+  
+  
   protectPage();
   const logoutBtn = document.getElementById("logout");
   logoutBtn.addEventListener("click", () => {

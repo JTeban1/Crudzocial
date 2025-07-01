@@ -1,0 +1,19 @@
+/* Fondo degradado */
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+/* Barra de navegación con bordes redondeados */
+.navbar {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-link:hover, .navbar-brand:hover{
+    color: #ffda44 !important;
+}
+
+@media (min-width: 600px){
+    .container{
+        margin-top: 20vh;
+    }
+}

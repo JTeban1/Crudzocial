@@ -1,0 +1,45 @@
+/* Caja de tarjeta con sombra */
+.card-custom {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    min-height: 125px; /* Asegura que todas las tarjetas tengan al menos esta altura */
+}
+
+.card-custom h5 {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.card-custom p {
+    color: #666;
+}
+
+.card-custom {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.5s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+}
+
+.card-custom:hover {
+    transform: translateY(-10px); /* Mueve la tarjeta hacia arriba */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Aumenta la sombra */
+}
+
+.btn-custom {
+    background-color: #0072ff;
+    color: white;
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
+    width: 10em;
+}
+
+.btn-custom:hover {
+    background-color: #005bb5;
+}
+

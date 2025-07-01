@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú de Usuario</title>
+    <!-- Vinculamos el CSS de Bootstrap y Font Awesome para íconos -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/menu.css">
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="menu.html">App Web</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-sticky-note"></i> Notas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-image"></i> Imágenes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./logs.html"><i class="fas fa-clipboard-list"></i> Logs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./user_profile.html"><i class="fas fa-user"></i> Perfil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-md-4 d-flex">
+                <div class="card-custom d-flex flex-column justify-content-between align-items-center flex-fill">
+                    <h5><i class="fas fa-sticky-note"></i> Mis Notas</h5>
+                    <p>Accede a todas tus notas guardadas, agrega nuevas y edita las existentes.</p>
+                    <a href="#" class="btn btn-custom mt-auto">Ir a Notas</a>
+                </div>
+            </div>
+            <div class="col-md-4 d-flex">
+                <div class="card-custom d-flex flex-column justify-content-between align-items-center flex-fill">
+                    <h5><i class="fas fa-image"></i> Mis Imágenes</h5>
+                    <p>Visualiza, agrega o elimina imágenes que hayas subido.</p>
+                    <a href="#" class="btn btn-custom mt-auto">Ir a Imágenes</a>
+                </div>
+            </div>
+            <div class="col-md-4 d-flex">
+                <div class="card-custom d-flex flex-column justify-content-between align-items-center flex-fill">
+                    <h5><i class="fas fa-clipboard-list"></i> Mis Logs</h5>
+                    <p>Revisa todos los registros y actividad de tu cuenta.</p>
+                    <a href="./logs.html" class="btn btn-custom mt-auto">Ir a Logs</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-md-6 d-flex">
+                <div class="card-custom d-flex flex-column justify-content-between align-items-center flex-fill">
+                    <h5><i class="fas fa-user"></i> Mi Perfil</h5>
+                    <p>Visualiza y edita la información de tu perfil personal.</p>
+                    <a href="#" class="btn btn-custom mt-auto">Ir a Perfil</a>
+                </div>
+            </div>
+            <div class="col-md-6 d-flex">
+                <div class="card-custom d-flex flex-column justify-content-between align-items-center flex-fill">
+                    <h5><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</h5>
+                    <p>Haz clic para cerrar sesión y salir de tu cuenta.</p>
+                    <a href="../index.html" class="btn btn-custom mt-auto">Cerrar sesión</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts de Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+<!-- 
+async function login(email, password) {
+  const users = getUsers();
+  const hashedPassword = await hashPassword(password);
+  let usersList = JSON.parse(localStorage.getItem("users"));
+  let flag = false;
+
+  console.log(usersList[0].email === email)
+  console.log(usersList[0].password === hashedPassword);
+  
+
+  for (let index = 0; index < usersList.length; index++) {
+    if (usersList[index].email === email) {
+      if (usersList[index].password === hashedPassword) {
+          let indicator = index;
+          localStorage.setItem("index", indicator);
+          return true;
+      }
+    }
+  }
+
+  if (flag === false) {
+    return false;
+  }
+
+  // const user = users.find(u => u.email === email && u.password === hashedPassword);
+  // if (user) {
+  //   localStorage.setItem("loggedIn", JSON.stringify(user));
+  //   return user.id; // Changed from "return true, user.id;" 
+  // }
+} -->
