@@ -1,11 +1,11 @@
 import {addLog, current}  from '../js/logic_logs.js';
-import { hashPassword }  from '../js/auth.js';
+import { hashPassword, protectPage }  from '../js/auth.js';
 
+protectPage();
 
 // Lista de los usuarios
 let index = localStorage.getItem('index')
 let userData = JSON.parse(localStorage.getItem('users'));
-console.log(userData);
 
 // Obtener formulario
 
@@ -34,7 +34,7 @@ form.addEventListener('submit', async function (e) {
   const formData = new FormData(this);
   const user = {};
 
-  for (const [key, value] of formData.entries()) {
+  for (const [key, value] of formData.entries()) {    
     user[key] = value;
   }
 
@@ -50,26 +50,21 @@ form.addEventListener('submit', async function (e) {
       return;
     }
   }
-
+  
   const fieldsToCompare = ['nombres', 'apellidos', 'email', 'telefono', 'pais', 'ciudad'];
 
   for (const field of fieldsToCompare) {
-    if (user[field] && user[field] !== userData[index][field]) {
+    if (user[field] !== userData[index][field]) {
       userData[index][field] = user[field];
     }
-  }
+  }  
 
+  localStorage.removeItem('users');
   localStorage.setItem('users', JSON.stringify(userData));
+  
   changePlaceholder();
   addLog("Cambio en los datos de usuario", current());
   alert("Perfil cambiado correctamente.");
   form.reset();
   
 });
-
-
-
-
-
-
-

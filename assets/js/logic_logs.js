@@ -1,6 +1,3 @@
-let index = localStorage.getItem('index');
-let userData = JSON.parse(localStorage.getItem('users'));
-
 export function current() {
     const currentDay = () => {
         const now = new Date();
@@ -25,6 +22,8 @@ export function current() {
 }
 
 export function addLog(reason, time) {
+    const index = localStorage.getItem('index');
+    const userData = JSON.parse(localStorage.getItem('users'));
     userData[index].logs.push({time: time, reason: reason})
     localStorage.setItem('users', JSON.stringify(userData)); 
 }

@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (userId) { // Changed from checking just true/false
       window.location.href = "pages/menu.html";
     } else {
-      alert("Invalid credentials.");
+      alert("Email o contraseña inválidos.");
     }
   });
 });

@@ -52,13 +52,13 @@ export async function login(email, password) {
   
 }
 
-/**
- * Logs out the current user by removing the "loggedIn" item from localStorage.
- * This effectively ends the user's session on the client side.
- */
-function logout() {
-  localStorage.removeItem("loggedIn");
-}
+// /**
+//  * Logs out the current user by removing the "loggedIn" item from localStorage.
+//  * This effectively ends the user's session on the client side.
+//  */
+// function logout() {
+//   localStorage.removeItem("loggedIn");
+// }
 
 /**
  * Checks if the user is currently logged in by verifying the presence of the "loggedIn" item in localStorage.
@@ -66,7 +66,7 @@ function logout() {
  * @returns {boolean} Returns true if the user is logged in, otherwise false.
  */
 function isLoggedIn() {
-  return !!localStorage.getItem("loggedIn");
+  return !!localStorage.getItem("index");
 }
 
 /**
@@ -74,8 +74,9 @@ function isLoggedIn() {
  * Checks the user's login status using the isLoggedIn() function.
  * If the user is not logged in, navigates to "../index.html".
  */
-function protectPage() {
+export function protectPage() {
   if (!isLoggedIn()) {
-    window.location.href = "../index.html";
+    window.location.href = "../../index.html";
   }
 }
+

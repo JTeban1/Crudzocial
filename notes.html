@@ -12,7 +12,7 @@
     <!-- Navigation bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
         <div class="container-fluid">
-            <a class="navbar-brand fw-bold" href="menu.html">
+            <a class="navbar-brand fw-bold" href="./pages/menu.html">
                 <i class="fas fa-sticky-note me-2"></i>CrudZocial
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -21,7 +21,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="notes.html">
+                        <a class="nav-link active" href="./notes.html">
                             <i class="fas fa-sticky-note"></i> Notas
                         </a>
                     </li>
@@ -31,17 +31,17 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="./pages/logs.html">
                             <i class="fas fa-clipboard-list"></i> Logs
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="./pages/user_profile.html">
                             <i class="fas fa-user"></i> Perfil
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" id="logoutNav">
                             <i class="fas fa-sign-out-alt"></i> Cerrar sesion
                         </a>
                     </li>
@@ -93,6 +93,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-    <script src="notes.js"></script>
+    <script type="module" src="./assets/js/notes.js"></script>
+    <script src="../assets/js/logout.js"></script>
 </body>
 </html>

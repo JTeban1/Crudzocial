@@ -1,3 +1,7 @@
+import { protectPage }  from './auth.js';
+
+protectPage();
+
 let userData = JSON.parse(localStorage.getItem('users'));
 let index = localStorage.getItem('index');
 
