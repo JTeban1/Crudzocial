@@ -73,7 +73,8 @@ function createUserObject(form) {
  * @returns {Promise<void>} Resolves when the registration process is complete.
  */
 async function registerUser(user) {
-  await saveUser(user);
-  alert("Registro realizado correctamente, ¡ya puedes iniciar sesión!");
-  window.location.href = "../index.html";
+  if (await saveUser(user)) {
+    alert("Registro realizado correctamente, ¡ya puedes iniciar sesión!");
+    window.location.href = "../index.html";
+  }
 }
