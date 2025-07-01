@@ -35,6 +35,8 @@ form.addEventListener('submit', async function (e) {
     user[key] = value;
   }
 
+  console.log(user);
+
   if (user.password && user.confirmPass) {
     const passHash = await hashPassword(user.password);
     const confirmHash = await hashPassword(user.confirmPass);

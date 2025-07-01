@@ -49,6 +49,7 @@ protectPage();
     // ✅ CAMBIO: Guardar las notas en el campo correspondiente del usuario
     function guardarNotasEnStorage() {
         userData[index].notes = notas;
+        userData = JSON.parse(localStorage.getItem('users'));
         localStorage.setItem('users', JSON.stringify(userData));
         
     }
@@ -159,11 +160,12 @@ protectPage();
             contenido: '',
             fechaCreacion: new Date().toISOString()
         };
-
+        addLog("Creaste una nota", current());
         mostrarFormulario(true);
     }
 
     function editarNota() {
+        addLog("Cambiaste una nota", current());
         mostrarFormulario(false);
     }
 
@@ -235,7 +237,11 @@ protectPage();
             notas = notas.filter(function(nota) {
                 return nota.id !== notaActual.id;
             });
-
+            
+            addLog("Eliminaste una nota", current());
+            const userData = JSON.parse(localStorage.getItem('users'));
+            console.log(userData);
+            
             guardarNotasEnStorage();
             renderizarNotas();
             mostrarEstadoVacio();

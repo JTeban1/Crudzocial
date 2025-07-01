@@ -24,6 +24,7 @@ export function current() {
 export function addLog(reason, time) {
     const index = localStorage.getItem('index');
     const userData = JSON.parse(localStorage.getItem('users'));
+    console.log(userData);
     userData[index].logs.push({time: time, reason: reason})
     localStorage.setItem('users', JSON.stringify(userData)); 
 }
