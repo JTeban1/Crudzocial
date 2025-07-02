@@ -1,3 +1,5 @@
+import { addLog, current } from '../js/logic_logs.js';
+
 (function () {
   'use strict';
 
@@ -38,6 +40,7 @@
       };
 
       imagenes.unshift(nuevaImagen);
+      addLog("Guardaste una imágen", current());
       guardarEnStorage();
       renderGaleria();
       input.value = '';
@@ -56,7 +59,7 @@
 
         const ctx = canvas.getContext('2d');
         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-        const dataUrl = canvas.toDataURL('image/jpeg', 0.7); // Comprimir
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.7); 
         callback(dataUrl);
       };
       img.src = e.target.result;
@@ -65,6 +68,7 @@
   }
 
   function guardarEnStorage() {
+    userData = JSON.parse(localStorage.getItem('users'));
     userData[index].imgs = imagenes;
     localStorage.setItem('users', JSON.stringify(userData));
   }
@@ -95,7 +99,6 @@
       gallery.appendChild(col);
     });
 
-    // Añadir eventos para ver imágenes
     document.querySelectorAll('[data-src]').forEach(imgEl => {
       imgEl.addEventListener('click', () => {
         verImagen(imgEl.dataset.src);
@@ -103,16 +106,17 @@
     });
   }
 
-  // 👁️ Ver imagen en modal
+
   window.verImagen = function (src) {
     modalImage.src = src;
     previewModal.show();
   };
 
-  // 🗑️ Eliminar imagen
   window.eliminarImagen = function (id) {
     if (confirm("¿Deseas eliminar esta imagen?")) {
       imagenes = imagenes.filter(img => img.id !== id);
+
+      addLog("Eliminaste una imágen", current());
       guardarEnStorage();
       renderGaleria();
     }
