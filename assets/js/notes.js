@@ -27,6 +27,13 @@ protectPage();
         inicializarAplicacion();
     });
 
+    // ✅ CAMBIO: Ya no se usa localStorage.getItem para notas, sino userData[index].notes
+    function cargarNotasDesdeStorage() {
+        index = localStorage.getItem('index');
+        userData = JSON.parse(localStorage.getItem('users'));
+        notas = userData[index].notes || [];
+    }
+
     function inicializarAplicacion() {
         cargarNotasDesdeStorage();
         renderizarNotas();
@@ -39,12 +46,6 @@ protectPage();
         });
     }
 
-    // ✅ CAMBIO: Ya no se usa localStorage.getItem para notas, sino userData[index].notes
-    function cargarNotasDesdeStorage() {
-        index = localStorage.getItem('index');
-        userData = JSON.parse(localStorage.getItem('users'));
-        notas = userData[index].notes || [];
-    }
 
     // ✅ CAMBIO: Guardar las notas en el campo correspondiente del usuario
     function guardarNotasEnStorage() {
@@ -157,8 +158,7 @@ protectPage();
         notaActual = {
             id: Date.now(),
             titulo: '',
-            contenido: '',
-            fechaCreacion: new Date().toISOString()
+            contenido: ''
         };
         addLog("Creaste una nota", current());
         mostrarFormulario(true);
@@ -221,7 +221,6 @@ protectPage();
 
         notaActual.titulo = titulo || 'Sin título';
         notaActual.contenido = contenido;
-        notaActual.fechaModificacion = new Date().toISOString();
 
         if (esNueva) {
             notas.unshift(notaActual);

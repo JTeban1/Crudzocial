@@ -75,6 +75,6 @@ function createUserObject(form) {
 async function registerUser(user) {
   if (await saveUser(user)) {
     alert("Registro realizado correctamente, ¡ya puedes iniciar sesión!");
-    window.location.href = "../index.html";
+    window.location.href = "./index.html";
   }
 }
