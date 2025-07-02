@@ -20,7 +20,7 @@ logoutNav.addEventListener('click', function (e) {
   e.preventDefault(); // Prevent default link behavior
   addLog("Cerraste sesión", current()); // Log the logout action
   localStorage.removeItem('index'); // Clear session or user identifier
-  window.location.href = "../../index.html"; // Redirect to login/home page
+  window.location.href = "./index.html"; // Redirect to login/home page
 });
 
 /**
@@ -32,6 +32,6 @@ if (logoutMenu) {
     e.preventDefault();
     addLog("Cerraste sesión", current());
     localStorage.removeItem('index');
-    window.location.href = "../../index.html";
+    window.location.href = "./index.html";
   });
 }
