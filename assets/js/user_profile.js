@@ -1,13 +1,23 @@
-import {addLog, current}  from '../js/logic_logs.js';
-import { hashPassword, protectPage }  from '../js/auth.js';
+import { addLog, current } from '../js/logic_logs.js';
+import { hashPassword, protectPage } from '../js/auth.js';
 
+/**
+ * Protects the page from unauthorized access.
+ * Typically checks if the user is authenticated; redirects if not.
+ */
 protectPage();
 
-let index = localStorage.getItem('index')
+// Retrieve the current user's index and data from localStorage
+let index = localStorage.getItem('index');
 let userData = JSON.parse(localStorage.getItem('users'));
 
+// Reference to the user profile form
 const form = document.getElementById('user-form');
 
+/**
+ * Sets placeholder values in the form inputs
+ * based on the currently stored user data.
+ */
 function changePlaceholder() {
   document.getElementById('firstName').placeholder = userData[index].firstName;
   document.getElementById('lastName').placeholder = userData[index].lastName;
@@ -17,13 +27,22 @@ function changePlaceholder() {
   document.getElementById('city').placeholder = userData[index].city;
 }
 
-changePlaceholder()
+// Initialize placeholders on page load
+changePlaceholder();
 
+/**
+ * Handles the form submission for updating user profile data.
+ * - Confirms the user action.
+ * - Hashes passwords if provided and checks for equality.
+ * - Updates only changed fields in localStorage.
+ * - Logs the change and resets the form.
+ */
 form.addEventListener('submit', async function (e) {
   e.preventDefault();
-  const confirmado = confirm('¿Estás seguro de que deseas guardar los cambios?');
 
-  if (!confirmado) {
+  const confirmed = confirm('¿Estás seguro de que deseas guardar los cambios?');
+
+  if (!confirmed) {
     form.reset();
     return;
   }
@@ -31,12 +50,12 @@ form.addEventListener('submit', async function (e) {
   const formData = new FormData(this);
   const user = {};
 
-  for (const [key, value] of formData.entries()) {    
+  // Convert FormData to a plain object
+  for (const [key, value] of formData.entries()) {
     user[key] = value;
   }
 
-  console.log(user);
-
+  // Handle password update, if provided
   if (user.password && user.confirmPass) {
     const passHash = await hashPassword(user.password);
     const confirmHash = await hashPassword(user.confirmPass);
@@ -48,21 +67,22 @@ form.addEventListener('submit', async function (e) {
       return;
     }
   }
-  
-  const fieldsToCompare = ['firstName', 'lastName', 'email', 'phone', 'country', 'city'];
 
+  // Update only the changed fields
+  const fieldsToCompare = ['firstName', 'lastName', 'email', 'phone', 'country', 'city'];
   for (const field of fieldsToCompare) {
-    if (user[field] !== userData[index][field]) {
+    if (user[field] && user[field] !== userData[index][field]) {
       userData[index][field] = user[field];
     }
-  }  
+  }
 
-  localStorage.removeItem('users');
+  // Save updated data in localStorage
   localStorage.setItem('users', JSON.stringify(userData));
-  
+
+  // Refresh placeholders and add log entry
   changePlaceholder();
   addLog("Cambio en los datos de usuario", current());
+
   alert("Perfil cambiado correctamente.");
   form.reset();
-  
 });

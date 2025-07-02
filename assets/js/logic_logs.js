@@ -1,3 +1,11 @@
+/**
+ * Returns the current date and time in a formatted string.
+ *
+ * @function
+ * @returns {[string, string]} An array with two elements:
+ * - The current date in the format "dd/mm/yyyy".
+ * - The current time in the format "hh:mm:ss".
+ */
 export function current() {
     const currentDay = () => {
         const now = new Date();
@@ -18,13 +26,21 @@ export function current() {
 
         return `${hours}:${minutes}:${seconds}`;
     };
-    return [currentDay(), currentHour()]
+
+    return [currentDay(), currentHour()];
 }
 
+/**
+ * Adds a log entry to the currently selected user in localStorage.
+ *
+ * @function
+ * @param {string} reason - The reason or description of the log entry.
+ * @param {string} time - The time when the log was created, typically from `current()`.
+ */
 export function addLog(reason, time) {
     const index = localStorage.getItem('index');
     const userData = JSON.parse(localStorage.getItem('users'));
-    console.log(userData);
-    userData[index].logs.push({time: time, reason: reason})
+
+    userData[index].logs.push({ time: time, reason: reason });
     localStorage.setItem('users', JSON.stringify(userData)); 
 }
