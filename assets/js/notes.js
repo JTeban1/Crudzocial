@@ -4,22 +4,19 @@ import {addLog, current}  from '../js/logic_logs.js';
 protectPage();
 
 /**
- * @fileoverview Sistema de gestión de notas CRUD con almacenamiento dentro de userData[index].notes
+ * @fileoverview CRUD notes management system with storage within userData[index].notes
  */
 (function() {
     'use strict';
 
-    // ✅ CAMBIO: Cargar el índice del usuario y los datos desde localStorage
     let index = localStorage.getItem('index');
     let userData = JSON.parse(localStorage.getItem('users'));
 
-    // ✅ CAMBIO: Inicializar userData[index].notes si no existe
     if (!userData[index].notes) {
         userData[index].notes = [];
         localStorage.setItem('users', JSON.stringify(userData));
     }
 
-    // ✅ CAMBIO: En lugar de variable global notas, usamos la lista dentro del usuario actual
     let notas = userData[index].notes;
     let notaActual = null;
 
@@ -27,19 +24,28 @@ protectPage();
         inicializarAplicacion();
     });
 
-    // ✅ CAMBIO: Ya no se usa localStorage.getItem para notas, sino userData[index].notes
+    /**
+     * Loads notes from localStorage and refreshes the current user's notes array.
+     * Updates the global index, userData, and notas variables.
+     */
     function cargarNotasDesdeStorage() {
         index = localStorage.getItem('index');
         userData = JSON.parse(localStorage.getItem('users'));
         notas = userData[index].notes || [];
     }
 
+    /**
+     * Initializes the notes application by loading data, rendering notes, and setting up event listeners.
+     */
     function inicializarAplicacion() {
         cargarNotasDesdeStorage();
         renderizarNotas();
         configurarEventListeners();
     }
 
+    /**
+     * Sets up event listeners for the main application buttons.
+     */
     function configurarEventListeners() {
         document.getElementById('newNoteBtn').addEventListener('click', function() {
             crearNuevaNota();
@@ -47,7 +53,9 @@ protectPage();
     }
 
 
-    // ✅ CAMBIO: Guardar las notas en el campo correspondiente del usuario
+    /**
+     * Saves the current notes array to localStorage within the current user's data.
+     */
     function guardarNotasEnStorage() {
         userData = JSON.parse(localStorage.getItem('users'));
         userData[index].notes = notas;
@@ -55,6 +63,10 @@ protectPage();
         
     }
 
+    /**
+     * Renders the notes list in the DOM, updating the notes count and generating HTML.
+     * Shows empty state if no notes exist, otherwise generates note cards and sets up their event listeners.
+     */
     function renderizarNotas() {
         const notesList = document.getElementById('notesList');
         const notesCount = document.getElementById('notesCount');
@@ -70,6 +82,11 @@ protectPage();
         configurarEventListenersNotas();
     }
 
+    /**
+     * Generates HTML for the notes list and inserts it into the provided element.
+     * Creates Bootstrap card elements for each note with title and content preview.
+     * @param {HTMLElement} notesList - The DOM element where the notes HTML will be inserted.
+     */
     function generarHTMLNotas(notesList) {
         let html = '';
 
@@ -91,6 +108,10 @@ protectPage();
         notesList.innerHTML = html;
     }
 
+    /**
+     * Sets up click event listeners for all note cards in the notes list.
+     * Each card will trigger note selection when clicked.
+     */
     function configurarEventListenersNotas() {
         const notaCards = document.querySelectorAll('[data-nota-id]');
         for (let i = 0; i < notaCards.length; i++) {
@@ -101,6 +122,10 @@ protectPage();
         }
     }
 
+    /**
+     * Selects a note by its ID and displays it in the main content area.
+     * @param {number} id - The unique identifier of the note to select.
+     */
     function seleccionarNota(id) {
         notaActual = notas.find(function(nota) {
             return nota.id === id;
@@ -112,6 +137,10 @@ protectPage();
         }
     }
 
+    /**
+     * Displays the currently selected note in the main content area.
+     * Shows the note's title, content, and action buttons (Edit/Delete).
+     */
     function mostrarNota() {
         const noteActions = document.getElementById('noteActions');
         const mainContent = document.getElementById('mainContent');
@@ -130,6 +159,9 @@ protectPage();
         configurarEventListenersVisualizacion();
     }
 
+    /**
+     * Sets up event listeners for the note viewing actions (Edit and Delete buttons).
+     */
     function configurarEventListenersVisualizacion() {
         document.getElementById('editBtn').addEventListener('click', function() {
             editarNota();
@@ -140,6 +172,10 @@ protectPage();
         });
     }
 
+    /**
+     * Displays the empty state when no note is selected.
+     * Clears the current note selection and shows a placeholder message.
+     */
     function mostrarEstadoVacio() {
         notaActual = null;
         const noteActions = document.getElementById('noteActions');
@@ -154,6 +190,10 @@ protectPage();
         `;
     }
 
+    /**
+     * Creates a new note object and displays the form for editing.
+     * Generates a unique ID using timestamp and logs the action.
+     */
     function crearNuevaNota() {
         notaActual = {
             id: Date.now(),
@@ -164,11 +204,19 @@ protectPage();
         mostrarFormulario(true);
     }
 
+    /**
+     * Initiates editing of the currently selected note.
+     * Logs the action and displays the editing form.
+     */
     function editarNota() {
         addLog("Cambiaste una nota", current());
         mostrarFormulario(false);
     }
 
+    /**
+     * Displays the note editing form with title and content inputs.
+     * @param {boolean} esNueva - Indicates whether this is a new note or editing an existing one.
+     */
     function mostrarFormulario(esNueva) {
         const noteActions = document.getElementById('noteActions');
         const mainContent = document.getElementById('mainContent');
@@ -194,6 +242,10 @@ protectPage();
         configurarEventListenersFormulario(esNueva);
     }
 
+    /**
+     * Sets up event listeners for the note editing form (Save, Cancel buttons and Enter key navigation).
+     * @param {boolean} esNueva - Indicates whether this is a new note or editing an existing one.
+     */
     function configurarEventListenersFormulario(esNueva) {
         document.getElementById('saveBtn').addEventListener('click', function() {
             guardarNota(esNueva);
@@ -210,6 +262,11 @@ protectPage();
         });
     }
 
+    /**
+     * Saves the current note with the form data.
+     * Validates that at least title or content is provided, then saves and refreshes the display.
+     * @param {boolean} esNueva - Indicates whether this is a new note (adds to array) or editing existing.
+     */
     function guardarNota(esNueva) {
         const titulo = document.getElementById('tituloInput').value.trim();
         const contenido = document.getElementById('contenidoInput').value.trim();
@@ -231,6 +288,10 @@ protectPage();
         mostrarNota();
     }
 
+    /**
+     * Deletes the currently selected note after user confirmation.
+     * Removes the note from the array, logs the action, saves changes, and shows empty state.
+     */
     function eliminarNota() {
         if (confirm(`¿Eliminar "${notaActual.titulo}"?`)) {
             notas = notas.filter(function(nota) {
@@ -245,6 +306,10 @@ protectPage();
         }
     }
 
+    /**
+     * Cancels the current editing operation.
+     * Returns to note view if the note exists, otherwise shows empty state.
+     */
     function cancelar() {
         if (notas.find(function(nota) { 
             return nota.id === notaActual.id; 
