@@ -194,20 +194,12 @@ See [ASYNCHRONISM_AND_PROMISES.md](./ASYNCHRONISM_AND_PROMISES.md) for detailed 
 - **Bootstrap 5.3.3**: Modern, responsive framework
 - **Custom CSS**: Additional styling for specific components
 - **Responsive Design**: Mobile-friendly layouts
-- **Modern UI**: Clean, professional appearance
 
 ### Color Scheme
 - Primary: Bootstrap success green
 - Background: Light gray (`bg-light`)
 - Cards: White with subtle shadows
 - Forms: Clean, minimal styling
-
-## 📱 Browser Compatibility
-
-- ✅ Chrome 37+ (Web Crypto API support)
-- ✅ Firefox 34+
-- ✅ Safari 7+
-- ✅ Edge 12+
 
 ## 🔄 Data Flow
 
@@ -233,17 +225,6 @@ See [ASYNCHRONISM_AND_PROMISES.md](./ASYNCHRONISM_AND_PROMISES.md) for detailed 
 - **No Server Integration**: No backend database or API
 - **Browser Storage Limits**: localStorage has size limitations
 
-## 🚀 Future Enhancements
-
-- [ ] Backend integration with proper database
-- [ ] Real-time features (WebSocket integration)
-- [ ] Advanced user profiles with avatars
-- [ ] Social features (friends, messaging)
-- [ ] Image upload and processing
-- [ ] Email verification system
-- [ ] Password reset functionality
-- [ ] Multi-language support
-
 ## 🤝 Contributing
 
 1. Fork the repository
@@ -258,21 +239,9 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 👨‍💻 Authors
 
-**Team Leader - Week 2**  
-Riwi - Módulo 3 JavaScript
 
 ### Team Members
 - **Emmanuel Rendón Goez**
 - **Juan Esteban Sepulveda**
 - **Andrés Felipe Marín Patiño**
 - **Juan Camilo Sánchez Méndez**
-
-## 🙏 Acknowledgments
-
-- Bootstrap team for the excellent CSS framework
-- MDN Web Docs for Web Crypto API documentation
-- JavaScript community for best practices and patterns
-
----
-
-**Note**: This is an educational project demonstrating frontend authentication concepts. For production use, implement proper backend security measures.
