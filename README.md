@@ -1,6 +1,6 @@
 # Crudzocial - Social Media Platform
 
-A modern web application built with vanilla JavaScript that provides user authentication, profile management, and social features including posts, images, and notes.
+A modern web application built with vanilla JavaScript that provides user authentication, profile management, and social features including images, and notes.
 
 ## 🚀 Features
 
