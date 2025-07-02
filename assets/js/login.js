@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (userId) {
       // Redirect to menu page on successful login
-      window.location.href = "pages/menu.html";
+      window.location.href = "./menu.html";
     } else {
       // Show alert if login fails
       alert("Invalid email or password.");
