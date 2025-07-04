@@ -34,6 +34,7 @@ A modern web application built with vanilla JavaScript that provides user authen
 ```
 Crudzocial/
 ├── README.md               # Project documentation
+├── LICENSE
 ├── assets/
 │   ├── js/
 │   │   ├── auth.js         # Authentication logic
